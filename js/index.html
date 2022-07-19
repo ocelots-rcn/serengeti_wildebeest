@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<head>
+  <script src="./includes/axios.min.js" ></script>
+  <script src="./includes/plotly-2.12.1.min.js" ></script>
+
+  <script>
+    const switchTab = (el) => {
+      let tabParent = el.parentElement;
+      let tabName = el.getAttribute("name");
+
+      // Cycle through tabs to change look
+      for (let child of tabParent.children) {
+        el == child ? child.style['background-color'] = '#EEE' : child.style['background-color'] = '#FFF';
+      };
+
+      // Cycle through content divs
+      for (let child of tabParent.parentElement.children) {
+        if(child.getAttribute("name") !== 'tabs') {
+          let divName = child.getAttribute("name");
+          tabName == divName ? child.style.display = 'block' : child.style.display = 'none';
+        }
+      };
+    }
+  </script>
+</head>
+
+<body >
+  <div style="display: flex;flex-direction: row;">
+    <div style="width: 250px;padding: 5px">
+      <div name= "tabs" style="display: flex;flex-direction: row;margin-bottom: 5px">
+        <div name="overview" style="flex: 1;padding: 10px;border: 1px solid #CCC;cursor: pointer;background-color: #EEE" onclick="switchTab(this)">Overview</div>
+        <div name="filters" style="flex: 1;padding: 10px;border: 1px solid #CCC;cursor: pointer" onclick="switchTab(this)">Filters</div>
+      </div>
+      <div name="overview">
+        <p style="font-size: 1.2em">Environment at Sites of Wildebeest Observation, by Season</p>
+        <p>Environmental values at cameras where wildebeest were recorded by month. Boxes show the interquartile range, horizontal line is the median, diamond is the mean value. Whiskers show the values of points included within 1.5 times the intnerquartile range, values outside of this range (outliers) are represented by open circles.</p>
+      </div>
+      <div name="filters" style="display: none">
+        <span style="font-weight: bold">Variable</span><br />
+        <input name="wildebeestVariable" type="radio" value="Amount of Shade" onClick="wildebeestPlot()" checked /><span>Amount of Shade</span><br />
+        <input name="wildebeestVariable" type="radio" value="Distance to Confluence  m " onClick="wildebeestPlot()" /><span>Distance to Confluence (m)</span><br />
+        <input name="wildebeestVariable" type="radio" value="Distance to Kopje  m " onClick="wildebeestPlot()" /><span>Distance to Kopje (m)</span><br />
+        <input name="wildebeestVariable" type="radio" value="Distance to River  m " onClick="wildebeestPlot()" /><span>Distance to River (m)</span><br />
+        <input name="wildebeestVariable" type="radio" value="SeasonalGreenness" onClick="wildebeestPlot()" /><span>Seasonal Greenness</span><br />
+      </div>
+    </div>
+    <div id="WildebeestPlot" style="flex: 1;min-height: 500px"></div>
+  </div>
+</body>
+  <script src="./wildebeest.js"></script>
+</html>
