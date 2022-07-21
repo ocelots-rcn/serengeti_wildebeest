@@ -19,9 +19,9 @@ const wildebeestPlot = () => {
     });
 
     if(variable.includes('Distance')){
-        Plotly.newPlot('WildebeestPlot', pdata, {showlegend: false, yaxis: {title: variable, range: [0, 11000]}, xaxis: {title: 'Month', tick0: 0, dtick: 1}});
+        Plotly.newPlot('WildebeestPlot', pdata, {showlegend: false, yaxis: {title: variable, range: [0, 11000]}, xaxis: {title: 'Month', tick0: 0, dtick: 1}}, {responsive: true});
     }
     else {
-        Plotly.newPlot('WildebeestPlot', pdata, {showlegend: false, yaxis: {title: variable}, xaxis: {title: 'Month', tick0: 0, dtick: 1}});
+        Plotly.newPlot('WildebeestPlot', pdata, {showlegend: false, yaxis: {title: variable}, xaxis: {title: 'Month', tick0: 0, dtick: 1}}, {responsive: true});
     }
 };
